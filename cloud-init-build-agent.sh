@@ -1,6 +1,8 @@
 #!/bin/bash
 sudo apt-get update
 sudo apt-get install -y wget apt-transport-https software-properties-common
+mkdir /tmp/cloud-init-build-agent
+cd /tmp/cloud-init-build-agent
 curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
 curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
@@ -14,5 +16,5 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt install -y ./google-chrome-stable_current_amd64.deb
 
 wget  https://vstsagentpackage.azureedge.net/agent/2.183.1/vsts-agent-linux-x64-2.183.1.tar.gz
-mkdir myagent && cd myagent
-tar zxvf ~/vsts-agent-linux-x64-2.183.1.tar.gz
+sudo mkdir /opt/azurebuildagent
+sudo tar zxvf ./vsts-agent-linux-x64-2.183.1.tar.gz -C /opt/azurebuildagent
